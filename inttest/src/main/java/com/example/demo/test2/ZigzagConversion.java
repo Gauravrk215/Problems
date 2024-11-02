@@ -19,42 +19,42 @@ public class ZigzagConversion {
 //	step1 - first find how many char in first row
 //	step2- second last se one digit first then go on
 
-	public String convert(String s, int numRows) {
-		// Edge case: if numRows is 1 or greater than or equal to string length
-		if (numRows == 1 || numRows >= s.length()) {
-			return s;
-		}
+	 public String convert(String s, int numRows) {
+	        // Edge case: if numRows is 1 or greater than or equal to string length
+	        if (numRows == 1 || numRows >= s.length()) {
+	            return s;
+	        }
 
-		// Initialize StringBuilder array for each row
-		StringBuilder[] rows = new StringBuilder[numRows];
-		for (int i = 0; i < numRows; i++) {
-			rows[i] = new StringBuilder();
-		}
+	        // Initialize StringBuilder array for each row
+	        StringBuilder[] rows = new StringBuilder[numRows];
+	        for (int i = 0; i < numRows; i++) {
+	            rows[i] = new StringBuilder();
+	        }
 
-		int currentRow = 0;
-		boolean goingDown = false;
+	        int currentRow = 0;
+	        boolean goingDown = false;
 
-		// Traverse each character in the string
-		for (char c : s.toCharArray()) {
-			rows[currentRow].append(c);
+	        // Traverse each character in the string
+	        for (char c : s.toCharArray()) {
+	            rows[currentRow].append(c);
 
-			// Reverse direction if reaching top or bottom row
-			if (currentRow == 0 || currentRow == numRows - 1) {
-				goingDown = !goingDown;
-			}
+	            // Reverse direction if reaching top or bottom row
+	            if (currentRow == 0 || currentRow == numRows - 1) {
+	                goingDown = !goingDown;
+	            }
 
-			// Move up or down based on direction
-			currentRow += goingDown ? 1 : -1;
-		}
+	            // Move up or down based on direction
+	            currentRow += goingDown ? 1 : -1;
+	        }
 
-		// Combine all rows to get the final result
-		StringBuilder result = new StringBuilder();
-		for (StringBuilder row : rows) {
-			result.append(row);
-		}
+	        // Combine all rows to get the final result
+	        StringBuilder result = new StringBuilder();
+	        for (StringBuilder row : rows) {
+	            result.append(row);
+	        }
 
-		return result.toString();
-	}
+	        return result.toString();
+	    }
 
 	public static void main(String[] args) {
 
