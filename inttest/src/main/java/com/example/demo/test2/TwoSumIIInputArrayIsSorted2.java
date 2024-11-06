@@ -2,7 +2,7 @@ package com.example.demo.test2;
 
 import java.util.ArrayList;
 
-public class TwoSumIIInputArrayIsSorted {
+public class TwoSumIIInputArrayIsSorted2 {
 
 //	step 1 in for loop minus ith number from target
 //	stepn 2 find that number on that array
@@ -10,22 +10,25 @@ public class TwoSumIIInputArrayIsSorted {
 
 	public int[] twoSum(int[] numbers, int target) {
 
-		int[] arr = new int[2];
-		for (int i = 0; i < numbers.length; i++) {
+		int left = 0;
+		int right = numbers.length - 1;
 
-			int k = numbers[i];
-			int j = target - k;
-			for (int j2 = i + 1; j2 < numbers.length; j2++) {
-				if (j == numbers[j2]) {
+		while (left < right) {
 
-					arr[0] = i + 1;
-					arr[1] = j2 + 1;
-				}
+			int k = numbers[left] + numbers[right];
 
+			if (k == target) {
+				return new int[] { left + 1, right + 1 }; // return 1-indexed positions
+
+			} else if (k < target) {
+				left++;
+
+			} else {
+				right--;
 			}
-
 		}
-		return arr;
+
+		return new int[0];
 
 	}
 
@@ -33,13 +36,13 @@ public class TwoSumIIInputArrayIsSorted {
 
 	public static void main(String[] args) {
 
-		TwoSumIIInputArrayIsSorted sorted = new TwoSumIIInputArrayIsSorted();
+		TwoSumIIInputArrayIsSorted2 sorted = new TwoSumIIInputArrayIsSorted2();
 
 		int[] twoSum1 = sorted.twoSum(new int[] { 5, 25, 75 }, 100);
 		ArrayList<Integer> list = new ArrayList<>();
 		for (int i = 0; i < twoSum1.length; i++) {
 			list.add(twoSum1[i]);
-
+			
 		}
 
 		System.out.println(list);
