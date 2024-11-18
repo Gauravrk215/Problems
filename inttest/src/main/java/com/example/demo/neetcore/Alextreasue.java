@@ -1,108 +1,52 @@
 package com.example.demo.neetcore;
 
-import java.util.ArrayList;
-
 public class Alextreasue {
 
 	public int solve(int n, int[][] tiles) {
+		// DP arrays to store the number of factors of 2 and 5
+		int[][] dp2 = new int[n][n];
+		int[][] dp5 = new int[n][n];
 
-		int i = 0;
-		int j = 0;
-		ArrayList<Integer> list = new ArrayList<>();
-		int k = tiles[i][j];
-		list.add(k);
+		// Initialize the DP arrays
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				int num = tiles[i][j];
 
-		int count2 = 0;
-		int count5 = 0;
-
-		while (i < n && j < n) {
-
-			if (i != n - 1 && j != n - 1) {
-
-				int k1 = tiles[i][j + 1];
-				int k2 = tiles[i + 1][j];
-
-				int min = min(k1, k2);
-
-				if (min == k1) {
-					if (j < n) {
-
-						j++;
-					}
-
-				} else {
-					if (i < n) {
-
-						i++;
-					}
+				// Count factors of 2 and 5 for the current number
+				int count2 = 0, count5 = 0;
+				while (num % 2 == 0 && num > 0) {
+					count2++;
+					num /= 2;
 				}
-				list.add(min);
-			} else {
+				num = tiles[i][j]; // Reset the number to count factors of 5
+				while (num % 5 == 0 && num > 0) {
+					count5++;
+					num /= 5;
+				}
 
-				if (i == n - 1 && j == n - 1) {
-					i++;
-					j++;
-
-				} else if (i == n - 1) {
-					list.add(tiles[i][j + 1]);
-
-					j++;
-				} else if (j == n - 1) {
-					list.add(tiles[i + 1][j]);
-
-					i++;
+				// Fill the DP arrays based on the current tile
+				if (i == 0 && j == 0) {
+					// Starting tile
+					dp2[i][j] = count2;
+					dp5[i][j] = count5;
+				} else if (i == 0) {
+					// First row: only comes from the left
+					dp2[i][j] = dp2[i][j - 1] + count2;
+					dp5[i][j] = dp5[i][j - 1] + count5;
+				} else if (j == 0) {
+					// First column: only comes from above
+					dp2[i][j] = dp2[i - 1][j] + count2;
+					dp5[i][j] = dp5[i - 1][j] + count5;
+				} else {
+					// Rest of the grid: take the minimum path
+					dp2[i][j] = Math.min(dp2[i - 1][j], dp2[i][j - 1]) + count2;
+					dp5[i][j] = Math.min(dp5[i - 1][j], dp5[i][j - 1]) + count5;
 				}
 			}
-
 		}
 
-		System.out.println(list);
-
-		for (Integer integer : list) {
-			int factor2 = factor(integer, 2);
-
-			count2 += factor2;
-			int factor5 = factor(integer, 5);
-			count5 += factor5;
-
-		}
-
-		int max = Math.max(count2, count5);
-		return max;
-
-	}
-
-	public int min(int x, int y) {
-
-		int xfactor2 = factor(x, 2);
-		int xfactor5 = factor(x, 5);
-		int totalx = xfactor2 + xfactor5;
-
-		int yfactor2 = factor(y, 2);
-		int yfactor5 = factor(y, 5);
-		int totaly = yfactor2 + yfactor5;
-
-		if (totalx < totaly) {
-			return x;
-
-		} else {
-			return y;
-		}
-
-	}
-
-	public int factor(int x, int factor) {
-
-		int count = 0;
-
-		while (x > 0 && x % factor == 0) {
-			count++;
-			x = x / factor;
-
-		}
-
-		return count;
-
+		// The result is the minimum of trailing zeros determined by factors of 2 and 5
+		return Math.min(dp2[n - 1][n - 1], dp5[n - 1][n - 1]);
 	}
 
 	public static void main(String[] args) {
