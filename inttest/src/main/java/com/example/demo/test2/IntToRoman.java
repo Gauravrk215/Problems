@@ -1,8 +1,6 @@
 package com.example.demo.test2;
 
-import java.util.HashMap;
-
-public class RomanToInteger {
+public class IntToRoman {
 
 	public String intToRoman(int num) {
 		// Define values and corresponding Roman symbols
@@ -25,7 +23,7 @@ public class RomanToInteger {
 
 	public static void main(String[] args) {
 
-		RomanToInteger data = new RomanToInteger();
+		IntToRoman data = new IntToRoman();
 		String test1 = data.intToRoman(3749);
 		System.out.println(test1);
 

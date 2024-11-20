@@ -2,7 +2,7 @@ package com.example.demo.test2;
 
 import java.util.HashMap;
 
-public class IntegerToRoman {
+public class RomanToInt {
 
 	public int romanToInt(String s) {
 
@@ -41,7 +41,7 @@ public class IntegerToRoman {
 
 	public static void main(String[] args) {
 
-		IntegerToRoman data = new IntegerToRoman();
+		RomanToInt data = new RomanToInt();
 		int test1 = data.romanToInt("DCXXI");
 		System.out.println(test1);
 
