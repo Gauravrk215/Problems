@@ -58,4 +58,11 @@ public class SubstringwithConcatenationofAllWords {
 		return result;
 	}
 
+	public static void main(String[] args) {
+		SubstringwithConcatenationofAllWords solution = new SubstringwithConcatenationofAllWords();
+		String s = "barfoothefoobarman";
+		String[] words = { "foo", "bar" };
+		System.out.println(solution.findSubstring(s, words)); // Output: [0, 9]
+	}
+
 }
