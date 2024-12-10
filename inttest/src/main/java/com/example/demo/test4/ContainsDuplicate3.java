@@ -3,20 +3,21 @@ import java.util.HashSet;
 
 public class ContainsDuplicate3 {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
-        HashSet<Integer> set = new HashSet<>();
+    	
+        HashSet<Integer> set1 = new HashSet<>();
 
         for (int i = 0; i < nums.length; i++) {
             // If the current number is already in the set, we found a duplicate
-            if (set.contains(nums[i])) {
+            if (set1.contains(nums[i])) {
                 return true;
             }
 
             // Add the current number to the set
-            set.add(nums[i]);
+            set1.add(nums[i]);
 
             // Remove the oldest number if the size exceeds k
-            if (set.size() > k) {
-                set.remove(nums[i - k]);
+            if (set1.size() > k) {
+                set1.remove(nums[i - k]);
             }
         }
 
@@ -24,6 +25,8 @@ public class ContainsDuplicate3 {
     }
 
     public static void main(String[] args) {
+    	
+    	
         ContainsDuplicate3 solution = new ContainsDuplicate3();
 
         // Test cases
