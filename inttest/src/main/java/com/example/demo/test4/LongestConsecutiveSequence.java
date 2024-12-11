@@ -20,9 +20,13 @@ public class LongestConsecutiveSequence {
 
 		int out = 1;
 
-		int res = 0;
+		int res = 1;
 
 		for (int i = 1; i < nums.length; i++) {
+			
+			if (nums[i] == nums[i - 1]) {
+                continue;
+            }
 			int j = nums[i];
 			int k = nums[i - 1];
 
@@ -43,7 +47,7 @@ public class LongestConsecutiveSequence {
 
 	public static void main(String[] args) {
 
-		int i2 = longestConsecutive(new int[] { 9, 1, 4, 7, 3, -1, 0, 5, 8, -1, 6 });
+		int i2 = longestConsecutive(new int[] { 0,0 });
 
 		System.out.println(i2);
 
