@@ -1,4 +1,4 @@
-package com.example.demo.neetcore;
+package com.example.demo.neet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
