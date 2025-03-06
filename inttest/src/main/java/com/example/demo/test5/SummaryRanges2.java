@@ -41,6 +41,8 @@ public class SummaryRanges2 {
 		SummaryRanges2 solution = new SummaryRanges2();
 
 		// Test cases
+		System.out.println(solution.summaryRanges(new int[] { 0, 1, 2 })); // Output: ["0->2"]
+
 		System.out.println(solution.summaryRanges(new int[] { 0, 1, 2, 4, 5, 7 })); // Output: ["0->2", "4->5", "7"]
 		System.out.println(solution.summaryRanges(new int[] { 0, 2, 3, 4, 6, 8, 9 })); // Output: ["0", "2->4", "6",
 																						// "8->9"]
